@@ -1,0 +1,2 @@
+
+objs += boot/boot.o

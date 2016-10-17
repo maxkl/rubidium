@@ -1,0 +1,2 @@
+
+objs += kernel/kernel.o
