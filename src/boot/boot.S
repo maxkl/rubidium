@@ -43,7 +43,7 @@ _start:
 	call kernel_main
 
 	# The kernel returned although it should never do that
-	# We just lock it up
+	# We just lock the cpu up
 
 	# Disable interrupts
 	cli
