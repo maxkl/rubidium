@@ -33,7 +33,7 @@ run: $(out_dir)/Image
 	qemu-system-i386 -kernel $(out_dir)/Image
 
 # These directories will be searched for a Makefile
-MODULES := boot kernel lib
+MODULES := boot kernel lib drivers
 
 # Set up variables for included Makefiles
 libs :=
