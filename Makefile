@@ -8,6 +8,9 @@ CC := i386-elf-gcc
 CFLAGS := -Wall -Wextra -O2 -ffreestanding -I"$(src_dir)/include"
 LDFLAGS := -nostdlib -lgcc
 
+# Targets that don't need dependency files (.d)
+# This allows us to only include them when they're actually needed
+# so we are not building unnecessary stuff
 no-dep-targets = clean
 
 # Helper macros
