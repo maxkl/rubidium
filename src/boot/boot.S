@@ -33,15 +33,19 @@ _start:
 
 	# Set up stack
 	mov $stack_top, %esp
+	mov %esp, %ebp
 
 	# Init crucial processor state
-	# (floating point instrs, instr set extensions)
-	# gdt, paging
-	# (c++ features)
-	lgdtl (gdt_descriptor)
-	ljmpl $0x08, $1f
+	# (floating point instrs, instr set extensions, paging)
+
+	# Load the GDT
+	lgdt (gdt_descriptor)
+	# Far jump, to set the CS register to the new code segment
+	# This is necessary because %cs cannot be mov'ed to
+	ljmp $0x08, $1f
 
 1:
+	# Update the remaining segment registers to the new data segment
 	mov $0x10, %ax
 	mov %ax, %ds
 	mov %ax, %es
