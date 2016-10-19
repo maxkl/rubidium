@@ -4,8 +4,8 @@
 #include <drivers/term.h>
 #include <asm/io.h>
 
-#define vga_entry_color(fg, bg) (fg | bg << 4)
-#define vga_entry(c, color) ((uint16_t) c | (uint16_t) color << 8)
+#define vga_entry_color(fg, bg) ((uint8_t) (fg) | (uint8_t) (bg) << 4)
+#define vga_entry(c, color) ((uint16_t) (c) | (uint16_t) (color) << 8)
 
 #define VGA_MEMORY_ADDRESS 0xb8000
 #define VGA_SCREEN_CTRL 0x3d4
