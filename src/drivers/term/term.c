@@ -87,3 +87,31 @@ void term_puts(const char *str) {
 		str++;
 	}
 }
+
+void term_printi(int v, unsigned int r) {
+	if(r < 2 || r > 36)
+		return;
+
+	unsigned int uv;
+	if(v < 0 && r == 10) {
+		uv = -v;
+		term_putc('-');
+	} else {
+		uv = v;
+	}
+
+	unsigned int divider = 1;
+	unsigned int tmp = uv;
+	do {
+		tmp /= r;
+		if(tmp)
+			divider *= r;
+	} while(tmp);
+
+	while(divider > 0) {
+		unsigned int c = (uv / divider) % r;
+		c += c > 9 ? ('A' - 10) : '0';
+		term_putc(c);
+		divider /= r;
+	}
+}

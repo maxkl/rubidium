@@ -28,3 +28,4 @@ void term_set_color(enum vga_color fg, enum vga_color bg);
 void term_scroll(uint8_t lines);
 void term_putc(char c);
 void term_puts(const char *str);
+void term_printi(int value, unsigned int radix);
