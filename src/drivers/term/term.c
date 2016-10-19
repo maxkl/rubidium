@@ -48,7 +48,7 @@ void term_scroll(uint8_t lines) {
 	size_t n = (vga_height - lines) * vga_width * 2;
 	memmove(mem_dest, mem_src, n);
 
-	size_t start = vga_width * (vga_height - 1);
+	size_t start = vga_width * (vga_height - 1) * 2;
 	for(size_t i = 0; i < vga_width * 2; i += 2) {
 		vga_memory[start + i] = ' ';
 		vga_memory[start + i + 1] = term_color;
