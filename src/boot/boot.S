@@ -8,7 +8,7 @@
 # The multiboot header
 # The boot loader searches for the magic number in the first 8 KiB
 # of the kernel file, aligned at a 32-bit boundary
-.section multiboot
+.section .multiboot
 # Align at 32-bit boundary
 .align 4
 .long MAGIC
