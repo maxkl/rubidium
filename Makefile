@@ -32,6 +32,13 @@ clean:
 run: $(out_dir)/Image
 	qemu-system-i386 -kernel $(out_dir)/Image
 
+$(out_dir)/Image.iso: $(out_dir)/Image $(src_dir)/grub.cfg
+	$(mkdirp)
+	mkdir -p $(out_dir)/iso/boot/grub/
+	cp $(out_dir)/Image $(out_dir)/iso/boot/
+	cp $(src_dir)/grub.cfg $(out_dir)/iso/boot/grub/
+	grub-mkrescue -o $@ $(out_dir)/iso
+
 # These directories will be searched for a Makefile
 MODULES := boot kernel lib drivers
 
