@@ -1,2 +1,2 @@
 
-objs += boot/boot.o
+objs += boot/boot.o boot/gdt.o

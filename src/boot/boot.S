@@ -1,6 +1,6 @@
 # Constants for the multiboot header
-.set ALIGN, 1<<0
-.set MEMINFO, 1<<1
+.set ALIGN, 1 << 0
+.set MEMINFO, 1 << 1
 .set FLAGS, ALIGN | MEMINFO
 .set MAGIC, 0x1badb002
 .set CHECKSUM, -(MAGIC + FLAGS)
@@ -38,6 +38,16 @@ _start:
 	# (floating point instrs, instr set extensions)
 	# gdt, paging
 	# (c++ features)
+	lgdtl (gdt_descriptor)
+	ljmpl $0x08, $1f
+
+1:
+	mov $0x10, %ax
+	mov %ax, %ds
+	mov %ax, %es
+	mov %ax, %fs
+	mov %ax, %gs
+	mov %ax, %ss
 
 	# Enter high-level kernel
 	call kernel_main
@@ -48,8 +58,8 @@ _start:
 	# Disable interrupts
 	cli
 	# Wait for next interrupt
-1:	hlt
-	jmp 1b
+2:	hlt
+	jmp 2b
 
 # Set size of _start symbol (useful for debugging & call tracing)
 .size _start, . - _start
