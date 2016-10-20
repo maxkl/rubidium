@@ -5,7 +5,7 @@ out_dir := out
 
 # C compiler
 CC := i386-elf-gcc
-CFLAGS := -Wall -Wextra -O2 -ffreestanding -I"$(src_dir)/include"
+CFLAGS := -Wall -Wextra -O2 -ffreestanding -I"$(src_dir)/include" -fstack-protector-strong
 LDFLAGS := -nostdlib -lgcc
 
 # Targets that don't need dependency files (.d) (e.g. clean)
