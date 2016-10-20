@@ -10,6 +10,9 @@ This requires a cross-compiled `gcc` (plus `libgcc`) for `i386-elf`.
 
 ```bash
 make
+# If you want an ISO image with GRUB as the bootloader:
+# this generates `Image.iso` in the output directory
+make iso
 ```
 
 ## Running

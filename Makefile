@@ -22,6 +22,9 @@ mkdirp = @dir=$(dir $@); [ -d "$$dir" ] || mkdir -p "$$dir"
 .PHONY: all
 all: $(out_dir)/Image
 
+.PHONY: iso
+iso: $(out_dir)/Image.iso
+
 # That's easy, we just need to delete the output directory
 .PHONY: clean
 clean:
