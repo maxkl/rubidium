@@ -35,6 +35,11 @@ clean:
 run: $(out_dir)/Image
 	qemu-system-i386 -kernel $(out_dir)/Image
 
+# Run the image in qemu
+.PHONY: runiso
+runiso: $(out_dir)/Image.iso
+	qemu-system-i386 -drive format=raw,file=$(out_dir)/Image.iso
+
 $(out_dir)/Image.iso: $(out_dir)/Image $(src_dir)/grub.cfg
 	$(mkdirp)
 	mkdir -p $(out_dir)/iso/boot/grub/

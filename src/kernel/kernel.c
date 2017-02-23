@@ -5,7 +5,14 @@
 
 #include <drivers/term.h>
 
+#include "../boot/idt.h"
+#include "pic.h"
+
 void kernel_main() {
+	idt_init();
+	pic_init();
+	sti();
+
 	term_init();
 	term_puts("Starting kernel...\n");
 	term_puts("It's so ");
@@ -29,4 +36,18 @@ void kernel_main() {
 	term_putc('l');
 	term_set_color(VGA_COLOR_LIGHT_GREEN, VGA_COLOR_BLACK);
 	term_puts("!\n");
+
+	// uint32_t n = 256 / 0;
+	// struct idt_desc *desc = &idt[n];
+	//
+	// term_puts("desc: 0x");
+	// term_printi((uint32_t) desc, 16);
+	// term_puts("\n");
+
+	// term_puts("desc->segment: 0x");
+	// term_printi(desc->segment, 16);
+	// term_puts("\n");
+
+	while(1)
+		asm volatile("hlt");
 }
