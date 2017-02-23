@@ -46,7 +46,16 @@ void pic_disable() {
 }
 
 bool pic_is_spurious_irq(uint8_t irq) {
-	return !(pic_get_isr() & (1 << irq));
+	if(irq != 7 && irq != 15) {
+		return false;
+	}
+
+	uint16_t isr = pic_get_isr();
+	if(isr & (1 << irq)) {
+		return false;
+	}
+
+	return true;
 }
 
 void pic_eoi(uint8_t irq) {
@@ -91,6 +100,6 @@ void pic_init() {
 	outb(ICW4_8086, PIC1_DATA);
 	outb(ICW4_8086, PIC2_DATA);
 
-	// Un-mask all interrupts
-	pic_set_mask(0x0000);
+	// Mask all interrupts
+	pic_set_mask(0xffff);
 }
