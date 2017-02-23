@@ -7,10 +7,12 @@
 
 #include "../boot/idt.h"
 #include "pic.h"
+#include "pit.h"
 
 void kernel_main() {
 	idt_init();
 	pic_init();
+	pit_init();
 	sti();
 
 	term_init();
@@ -36,6 +38,8 @@ void kernel_main() {
 	term_putc('l');
 	term_set_color(VGA_COLOR_LIGHT_GREEN, VGA_COLOR_BLACK);
 	term_puts("!\n");
+
+	pit_setup_interval(20);
 
 	// uint32_t n = 256 / 0;
 	// struct idt_desc *desc = &idt[n];
